@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Test Extension Options</title>
+  <style>
+    body: { padding: 10px; }
+  </style>
+</head>
+
+<body>
+  <p>
+    <label>
+      <input type="checkbox" id="overrideConsole">
+      Override `console` object
+    </label>
+  </p>
+
+  <p>
+    <label for="sublevelName">Sublevel name</label>
+    <input type="text" id="sublevelName" />
+  </p>
+
+  <div id="status"></div>
+  <button id="save">Save</button>
+
+  <script src="bundles/common.bundle.js"></script>
+  <script src="bundles/options.bundle.js"></script>
+</body>
+</html>
