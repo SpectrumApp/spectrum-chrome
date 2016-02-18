@@ -22,6 +22,10 @@
       "bundles/background-script.bundle.js"
     ]
   },
+  "web_accessible_resources": [
+    "bundles/console.bundle.js",
+    "bundles/common.bundle.js"
+  ],
   "options_ui": {
     "page": "options.html",
     "chrome_style": true

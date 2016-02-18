@@ -10,6 +10,7 @@ var entry_points = {
   "options": path.resolve("spectrum-chrome/src/options.js"),
   "popup": path.resolve("spectrum-chrome/src/popup.js"),
   "background-script": path.resolve("spectrum-chrome/src/background-script.js"),
+  "content-script": path.resolve("spectrum-chrome/src/content_scripts/content-script.js"),
   "console": path.resolve("spectrum-chrome/src/content_scripts/console.js")
 
 }
