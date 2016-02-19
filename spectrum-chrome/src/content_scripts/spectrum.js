@@ -7,16 +7,40 @@ window._console = window.console;
 window.spectrum = {
   endpoint: 'http://localhost:9000/',
   sublevel: 'browser',
-  log: function() {
-    var args = Array.prototype.slice.call(arguments, 0);
+  _console: window._console,
+  _request: function(level, args) {
     postToSpectrum(window.spectrum.endpoint, {
-      level: 'DEBUG',
+      level: level,
       sublevel: window.spectrum.sublevel,
       args: args
     });
-    _console.log(...args);
-    //    _console.log.apply(console, arguments);
-  }
+  },
+  // TODO: console.dir
+  debug: function() {
+    var args = Array.prototype.slice.call(arguments, 0);
+    this._request('DEBUG', args);
+    _console.debug.apply(window._console, arguments);
+  },
+  error: function() {
+    var args = Array.prototype.slice.call(arguments, 0);
+    this._request('ERROR', args);
+    _console.error.apply(window._console, arguments);
+  },
+  info: function() {
+    var args = Array.prototype.slice.call(arguments, 0);
+    this._request('INFO', args);
+    _console.info.apply(window._console, arguments);
+  },
+  log: function() {
+    var args = Array.prototype.slice.call(arguments, 0);
+    this._request('DEBUG', args);
+    _console.log.apply(window._console, arguments);
+  },
+  warn: function() {
+    var args = Array.prototype.slice.call(arguments, 0);
+    this._request('WARNING', args);
+    _console.warn.apply(window._console, arguments);
+  },
 };
 
 function postToSpectrum(spectrumUrl, message) {
