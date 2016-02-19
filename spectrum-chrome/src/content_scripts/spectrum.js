@@ -103,6 +103,4 @@ document.addEventListener('spectrum:cleanup', function(e) {
     delete window.spectrum;
 });
 
-setTimeout(function() {
-  document.dispatchEvent(new CustomEvent('spectrum:options:get'));
-}, 0);
+document.dispatchEvent(new CustomEvent('spectrum:options:get'));
