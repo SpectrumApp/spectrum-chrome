@@ -21,6 +21,15 @@ var toggleExtension = function(tab) {
     // * browserAction.setTitle
     // * clean up DOM from scripts when disabled
 
+    if (!window.enabled) {
+      chrome.tabs.sendMessage(tab.id, {
+        detail: {
+          action: 'CLEANUP'
+        }
+      });
+      return;
+    }
+
     if (process.env.NODE_ENV === 'production') {
       var content_script = "bundles/content-script.bundle.min.js";
     } else {

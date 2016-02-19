@@ -33,29 +33,36 @@ appendScript('bundles/common.bundle.js')
   appendScript('bundles/spectrum.bundle.js');  
 });
 
-chrome.runtime.onMessage.addListener(function(message, sender) {
-  console.log(message.payload);
-})
-
 var updateOptions = function() {
   chrome.storage.local.get({
     endpoint: 'http://localhost:9000/',
     sublevelName: 'browser',
     overrideConsole: true
   }, function(items) {
-    document.dispatchEvent(new CustomEvent('RW759_connectExtension', {
+    document.dispatchEvent(new CustomEvent('spectrum:options:set', {
       detail: {
-        action: 'SET_CONSOLE_OPTIONS',
         payload: items
       }
     }));
   });
 }
 
-document.addEventListener('RW759_connectExtension', function(e) {
-  if (e.detail.action == 'GET_CONSOLE_OPTIONS') {
-    updateOptions();
-  }
+document.addEventListener('spectrum:options:get', function(e) {
+  updateOptions();
+});
+
+// Note: 'RW759_connectExtension' is the event name used for `.sendMessage()`,
+// in case you need to hijack it.
+
+chrome.runtime.onMessage.addListener(function(message) {
+  if (message.detail.action == 'CLEANUP') {
+    document.dispatchEvent(new CustomEvent('spectrum:cleanup'));
+
+    Array.from(document.getElementsByClassName('spectrumJs')).forEach(function(node) {
+      node.remove();
+    });
+
+  }  
 });
 
 chrome.storage.onChanged.addListener(function(items) {

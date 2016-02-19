@@ -38,34 +38,28 @@ function postToSpectrum(spectrumUrl, message) {
   })
 }
 
-document.addEventListener('RW759_connectExtension', function(e) {
-  // TODO: Add origin validation
-  if (e.detail.action == 'SET_CONSOLE_OPTIONS') {
-    var options = e.detail.payload;
-    if (options.endpoint) {
-      window.spectrum.endpoint = options.endpoint;
-    }
-    if (options.sublevelName) {
-      window.spectrum.sublevel = options.sublevelName;
-    }
-    // Override console.log according to the user's preferences
-    if (options.overrideConsole) {
-      window.console = Object.assign({}, window._console, window.spectrum);
-    } else {
-      window.console = window._console;
-    }
+document.addEventListener('spectrum:options:set', function(e) {
+  var options = e.detail.payload;
+  if (options.endpoint) {
+    window.spectrum.endpoint = options.endpoint;
   }
-  if (e.detail.action == 'CLEANUP') {
-    window.console = _console;
-    delete window._console;
-    delete window.spectrum;
+  if (options.sublevelName) {
+    window.spectrum.sublevel = options.sublevelName;
+  }
+  // Override console.log according to the user's preferences
+  if (options.overrideConsole) {
+    window.console = Object.assign({}, window._console, window.spectrum);
+  } else {
+    window.console = window._console;
   }
 });
 
+document.addEventListener('spectrum:cleanup', function(e) {
+    window.console = _console;
+    delete window._console;
+    delete window.spectrum;
+});
+
 setTimeout(function() {
-  document.dispatchEvent(new CustomEvent('RW759_connectExtension', {
-    detail: {
-      action: 'GET_CONSOLE_OPTIONS'
-    }
-  }));
+  document.dispatchEvent(new CustomEvent('spectrum:options:get'));
 }, 0);
