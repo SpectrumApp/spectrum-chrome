@@ -4,7 +4,6 @@
     "stage-0"
   ],
   "plugins": [
-    "transform-inline-environment-variables",
-    "transform-object-assign"
+    "transform-inline-environment-variables"
   ]
 }
