@@ -34,6 +34,7 @@ chrome.runtime.onMessage.addListener(function(message, sender) {
 
 var updateOptions = function() {
   chrome.storage.local.get({
+    endpoint: 'http://localhost:9000/',
     sublevelName: 'browser',
     overrideConsole: true
   }, function(items) {

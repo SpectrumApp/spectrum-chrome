@@ -1,9 +1,11 @@
 // Saves options to chrome.storage.local.
 function save_options() {
   var overrideConsole = document.getElementById('overrideConsole').checked;
+  var endpoint = document.getElementById('endpoint').value;
   var sublevelName = document.getElementById('sublevelName').value;
 
   chrome.storage.local.set({
+    endpoint: endpoint,
     sublevelName: sublevelName,
     overrideConsole: overrideConsole
   }, function() {
@@ -20,13 +22,14 @@ function save_options() {
 // stored in chrome.storage.
 function restore_options() {
   chrome.storage.local.get({
+    endpoint: 'http://localhost:9000/',
     sublevelName: 'browser',
     overrideConsole: true,
   }, function(items) {
+    document.getElementById('endpoint').value = items.endpoint;
     document.getElementById('sublevelName').value = items.sublevelName;
     document.getElementById('overrideConsole').checked = items.overrideConsole;
   });
 }
 document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save').addEventListener('click',
-    save_options);
+document.getElementById('save').addEventListener('click', save_options);
