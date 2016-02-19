@@ -15,7 +15,26 @@ window.spectrum = {
       args: args
     });
   },
-  // TODO: console.dir
+  clear: function() {
+    _console.clear.apply(window._console, arguments);
+  },
+  group: function() {
+    _console.group.apply(window._console, arguments);
+  },
+  groupEnd: function() {
+    _console.groupEnd.apply(window._console, arguments);
+  },
+  groupCollapsed: function() {
+    _console.groupCollapsed.apply(window._console, arguments);
+  },
+  table: function() {
+    _console.table.apply(window._console, arguments);
+  },
+  dir: function() {
+    var args = Array.prototype.slice.call(arguments, 0);
+    this._request('DEBUG', args);
+    _console.dir.apply(window._console, arguments);
+  },
   debug: function() {
     var args = Array.prototype.slice.call(arguments, 0);
     this._request('DEBUG', args);
