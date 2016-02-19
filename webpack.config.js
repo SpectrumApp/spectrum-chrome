@@ -39,7 +39,6 @@ var config = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  config.output.filename = "[name].bundle.min.js";
   config.plugins = [
     new CommonsPlugin({
       "minChunks": 3,
