@@ -5,3 +5,9 @@ node_modules/
 
 # bundles
 spectrum-chrome/bundles/
+
+# keys
+*.pem
+
+# builds
+*.crx
