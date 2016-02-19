@@ -11,7 +11,8 @@ var entry_points = {
   "popup": path.resolve("spectrum-chrome/src/popup.js"),
   "background-script": path.resolve("spectrum-chrome/src/background-script.js"),
   "content-script": path.resolve("spectrum-chrome/src/content_scripts/content-script.js"),
-  "console": path.resolve("spectrum-chrome/src/content_scripts/console.js")
+  "cleanup-script": path.resolve("spectrum-chrome/src/content_scripts/cleanup-script.js"),
+  "spectrum": path.resolve("spectrum-chrome/src/content_scripts/spectrum.js")
 
 }
 var config = {

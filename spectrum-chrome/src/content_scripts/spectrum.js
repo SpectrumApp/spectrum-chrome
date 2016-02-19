@@ -5,10 +5,11 @@ var uuid = require('uuid4');
 window._console = window.console;
 
 window.spectrum = {
+  endpoint: 'http://localhost:9000/',
   sublevel: 'browser',
   log: function() {
     var args = Array.prototype.slice.call(arguments, 0);
-    postToSpectrum({
+    postToSpectrum(window.spectrum.endpoint, {
       level: 'DEBUG',
       sublevel: window.spectrum.sublevel,
       args: args
@@ -18,11 +19,10 @@ window.spectrum = {
   }
 };
 
-function postToSpectrum(message) {
+function postToSpectrum(spectrumUrl, message) {
   uuid(function(err, id) {
     var level = message.level;
     var args = message.args;
-    var spectrumUrl = 'http://localhost:9000';
     var x = new XMLHttpRequest();
     x.open('POST', spectrumUrl);
     x.responseType = 'json';
@@ -42,6 +42,9 @@ document.addEventListener('RW759_connectExtension', function(e) {
   // TODO: Add origin validation
   if (e.detail.action == 'SET_CONSOLE_OPTIONS') {
     var options = e.detail.payload;
+    if (options.endpoint) {
+      window.spectrum.endpoint = options.endpoint;
+    }
     if (options.sublevelName) {
       window.spectrum.sublevel = options.sublevelName;
     }
@@ -51,6 +54,11 @@ document.addEventListener('RW759_connectExtension', function(e) {
     } else {
       window.console = window._console;
     }
+  }
+  if (e.detail.action == 'CLEANUP') {
+    window.console = _console;
+    delete window._console;
+    delete window.spectrum;
   }
 });
 

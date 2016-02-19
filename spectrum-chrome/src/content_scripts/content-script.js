@@ -4,6 +4,7 @@ var injectScript = function(func, args) {
 
 var appendScript = function(fileName, cb) {
   var s = document.createElement('script');
+  s.class = 'spectrumJs';
   s.src = chrome.extension.getURL(fileName);
 
   (document.head||document.documentElement).appendChild(s);
@@ -19,13 +20,14 @@ var appendScript = function(fileName, cb) {
 
 var i = document.createElement('input');
 i.id = 'spectrumExtensionId';
+i.class = 'spectrumJs';
 i.type = 'hidden';
 i.value = chrome.runtime.id;
 console.log(chrome.runtime);
 document.body.appendChild(i);
 
 appendScript('bundles/common.bundle.js', function() {
-  appendScript('bundles/console.bundle.js');  
+  appendScript('bundles/spectrum.bundle.js');  
 });
 
 chrome.runtime.onMessage.addListener(function(message, sender) {

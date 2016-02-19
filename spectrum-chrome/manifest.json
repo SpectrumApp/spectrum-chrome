@@ -23,7 +23,7 @@
     ]
   },
   "web_accessible_resources": [
-    "bundles/console.bundle.js",
+    "bundles/spectrum.bundle.js",
     "bundles/common.bundle.js"
   ],
   "options_ui": {
