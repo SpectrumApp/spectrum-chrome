@@ -38,16 +38,11 @@ var toggleExtension = function(tab) {
     return;
   }
 
-  if (process.env.NODE_ENV === 'production') {
-    var content_script = "bundles/content-script.bundle.min.js";
-  } else {
-    var content_script = "bundles/content-script.bundle.js";
-  }
   chrome.tabs.executeScript(tab.id, {
     file: 'bundles/common.bundle.js'
   });
   chrome.tabs.executeScript(tab.id, {
-    file: content_script
+    file: 'bundles/content-script.bundle.js'
   });
 };
 
