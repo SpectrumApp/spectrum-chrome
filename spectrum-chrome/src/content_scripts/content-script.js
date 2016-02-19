@@ -1,7 +1,3 @@
-var injectScript = function(func, args) {
-  return '(' + func + ')(' + JSON.stringify(args) + ');'
-};
-
 var appendScript = function(fileName) {
   var promise = new Promise(function(resolve, reject) {
     var s = document.createElement('script');
@@ -14,14 +10,6 @@ var appendScript = function(fileName) {
   });
   return promise;
 }
-
-var i = document.createElement('input');
-i.id = 'spectrumExtensionId';
-i.className = 'spectrumJs';
-i.type = 'hidden';
-i.value = chrome.runtime.id;
-console.log(chrome.runtime);
-document.body.appendChild(i);
 
 appendScript('bundles/common.bundle.js')
 .then(function() {
