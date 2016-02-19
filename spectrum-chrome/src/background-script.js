@@ -6,17 +6,22 @@ var setIconForTab = function(tabId) {
         "19": "icons/19.png",
         "38": "icons/38.png"
     };
+    var title = "Logging to Spectum is enabled";
   } else {
     var icons = {
         "19": "icons/19-gray.png",
         "38": "icons/38-gray.png"
     };
+    var title = "Logging to Spectum is not enabled";
   }
   chrome.browserAction.setIcon({
-      path: icons
+      path: icons,
+      tabId: tabId
   });
-  // TODO:
-  // * browserAction.setTitle
+  chrome.browserAction.setTitle({
+      title: title,
+      tabId: tabId
+  });
 };
 
 var toggleExtension = function(tab) {
@@ -46,7 +51,4 @@ var toggleExtension = function(tab) {
   });
 };
 
-chrome.tabs.onActivated.addListener(function(e) {
-  setIconForTab(e.tabId);
-});
 chrome.browserAction.onClicked.addListener(toggleExtension);
