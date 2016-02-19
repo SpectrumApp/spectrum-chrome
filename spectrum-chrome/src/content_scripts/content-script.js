@@ -10,11 +10,6 @@ var appendScript = function(fileName) {
 
     (document.head||document.documentElement).appendChild(s);
     s.onload = resolve;    
-    /*
-    s.onload = function() {
-      s.parentNode.removeChild(s);
-    };
-    */
     return s;
   });
   return promise;
