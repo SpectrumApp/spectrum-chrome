@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/SpectrumApp/spectrum-chrome#readme",
   "dependencies": {
-    "jquery": "^2.2.0",
     "uuid4": "^1.0.0"
   },
   "devDependencies": {

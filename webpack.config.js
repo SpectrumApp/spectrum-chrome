@@ -5,7 +5,6 @@ var CommonsPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin")
 
 var entry_points = {
   common: [
-    "jquery"
   ],
   "options": path.resolve("spectrum-chrome/src/options.js"),
   "popup": path.resolve("spectrum-chrome/src/popup.js"),
