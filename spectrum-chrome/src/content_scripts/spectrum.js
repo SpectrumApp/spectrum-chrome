@@ -59,7 +59,7 @@ window.spectrum = {
     var args = Array.prototype.slice.call(arguments, 0);
     this._request('WARNING', args);
     _console.warn.apply(window._console, arguments);
-  },
+  }
 };
 
 function postToSpectrum(spectrumUrl, message) {

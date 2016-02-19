@@ -1,6 +1,5 @@
 {
   "manifest_version": 2,
-
   "name": "Spectrum",
   "description": "This extension pipes your logs to Spectrum",
   "version": "0.0.1",
