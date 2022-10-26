@@ -1,5 +1,9 @@
 # Spectrum Chrome Extension
 
+## UPATE
+
+Spectrum is no longer in active development.  If you have any questions or concerns please contact us at https://revsys.com
+
 You can [install the extension in the Chrome store](https://chrome.google.com/webstore/detail/spectrum/jopdhoinfcaefobmlekemdaikoaaojln?authuser=1) which makes
 it eash to get your Javascript logs out of devtools and into [Spectrum](http://www.devspectrum.com).
 
